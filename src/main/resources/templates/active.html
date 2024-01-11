@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Active</title>
+</head>
+<body>
+<div th:if="${param.error}">
+    <div>Hubo un error en la verificacion del codigo, vuelva a intentarlo.</div>
+    <br/><br/>
+</div>
+<form action="/login/auth/active" method="post">
+    <div>Lea el codigo qr desde la applicacion de Authenticator</div>
+    <div>
+        <img th:src="${qr}" />
+    </div>
+    <div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <label for="code">Introduzca su codigo de MFA</label>
+        <br/><br/>
+        <input type="text" name="code" id="code" />
+    </div>
+    <button type="submit">ACTIVE FMA</button>
+</form>
+</body>
+</html>
